@@ -219,6 +219,9 @@ body{
 #first-element p{
   text-align: center;
 }
+#first-element h3{
+  color: yellow;
+}
 #second-element input, textarea{
   width: 80%;
   margin: auto;
@@ -226,12 +229,13 @@ body{
 .inputs-container{
   position: relative;
   left: 13%;
+  top: 15px;
 }
 
 @media only screen and (max-width: 500px){
   .footer-container{
     flex-direction: column;
-    padding: 5%;
+    padding: 9%;
   }
 }
 

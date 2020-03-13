@@ -166,3 +166,60 @@ $(".addcompany").click(function(){
   });
 });
 
+/*********************************** VALIDATION OF FOOTER INPUTS ******************************/ 
+
+function validmailfooter(){
+    var email =$("#footer-email").val();
+    var regx = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if(regx.test(email)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+$(document).ready(function(){
+    $("#footer-email").keyup(function(){
+        if(validmailfooter()){
+            $("#footer-email-error").css("color","green");
+            $("#footer-email-error").html("valid email");
+        }else{
+            $("#footer-email-error").css("color","red");
+            $("#footer-email-error").html("unvalid email");
+        }
+    });
+});
+
+
+function validfeedbackfooter(){
+    var feedback =$("#footer-textarea").val();
+    if(feedback.length>=14){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+$(document).ready(function(){
+    $("#footer-textarea").keyup(function(){
+        if(validfeedbackfooter()){
+            $("#footer-textarea-error").css("color","green");
+            $("#footer-textarea-error").html("feedback accepted");
+        }else{
+            $("#footer-textarea-error").css("color","red");
+            $("#footer-textarea-error").html("your feedback is too short");
+        }
+    });
+});
+
+
+function validatefooterinputs(){
+    if ((validfeedbackfooter()==true) || (validmailfooter()==true) ){
+        alert("your feedback has been sent successfully ");
+    }
+    else{
+        alert("please check your information again");
+    }
+}
