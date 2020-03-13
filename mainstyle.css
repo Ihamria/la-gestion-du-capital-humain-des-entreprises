@@ -1,0 +1,241 @@
+body{
+  overflow-x: hidden;
+}
+/*--------------------------Nav Bar-------------------------------------*/
+.navbar-b {
+  transition: all .5s ease-in-out;
+  background-color: transparent;
+  padding-top: 1.563rem;
+  padding-bottom: 1.563rem;
+  background: rgba(0, 0, 0, 0.7);
+}
+.navbar-b.navbar-trans .nav-link, .navbar-b.navbar-reduce .nav-link {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.navbar-b.navbar-trans .nav-link:before, .navbar-b.navbar-reduce .nav-link:before {
+  content: '';
+  position: absolute;
+  margin-left: 0px;
+  width: 0%;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  transition: all 500ms ease;
+}
+@media (min-width: 768px) {
+  .navbar-b.navbar-trans .nav-link:before, .navbar-b.navbar-reduce .nav-link:before {
+    margin-left: 18px;
+  }
+}
+.navbar-b.navbar-trans .nav-link:hover:before, .navbar-b.navbar-reduce .nav-link:hover:before {
+  width: 35px;
+}
+.navbar-b.navbar-trans .nav-link:before {
+  background-color: #fff;
+}
+.navbar-b.navbar-trans .nav-link:hover {
+  color: #fff;
+}
+.navbar-b .navbar-brand {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.navbar-b .navbar-nav  {
+  transform: translate3d(0px, 0px, 0px);
+  visibility: visible !important;
+}
+/*--/ Hamburger Navbar /--*/
+.navbar-toggler {
+  position: relative;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: 0;
+}
+.navbar-toggler span {
+  display: block;
+  background-color: #fff;
+  height: 3px;
+  width: 25px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  transform: rotate(0deg);
+  left: 0;
+  opacity: 1;
+}
+.navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+  transition: transform .35s ease-in-out;
+}
+.navbar-toggler:not(.collapsed) span:nth-child(1) {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  transform: rotate(135deg);
+  opacity: 0.9;
+}
+.navbar-toggler:not(.collapsed) span:nth-child(2) {
+  height: 12px;
+  visibility: hidden;
+  background-color: transparent;
+}
+.navbar-toggler:not(.collapsed) span:nth-child(3) {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  transform: rotate(-135deg);
+  opacity: 0.9;
+}
+
+/*-------------------------- SLIDER SECTION-------------------------------------*/
+.d-block{
+  width: 100%;
+  margin: auto;
+  height: 474px;
+}
+
+.companies-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+}
+.btn-comapny{
+  display: flex;
+  justify-content: space-between;
+}
+.btn-primary{
+  flex-basis: 48%;
+}
+#title-hear{
+  font-family: fantasy;
+  text-align: center;
+}
+
+  @media only screen and (max-width: 733px){
+    .companies-container {
+        flex-direction: column;
+        margin: auto;
+        position: relative;
+        left: 20%;
+    }
+    }
+  @media only screen and (max-width: 544px){
+      .companies-container {
+          flex-direction: column;
+          margin: auto;
+          position: relative;
+          left: 10%;
+      }
+      }
+
+  @media only screen and (max-width: 320px){
+.companies-container {
+    flex-direction: column;
+    margin: auto;
+    position: relative;
+    left: -5%;
+}
+}
+
+@media only screen and (max-width: 1456px){
+  .card{
+    margin-top: 2%;
+  }
+}
+
+.addcompany{
+  display: flex;
+  width: 9%;
+  margin: auto;
+  text-align: center;
+  height: auto;
+  background-color: #0069d9;
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px black;
+  cursor: pointer;
+  justify-content: center;
+}
+.addcompany:hover{
+  opacity: 0.7;
+}
+
+@media only screen and (max-width: 1456px){
+  .addcompany{
+    width: 20%;
+  }
+}
+
+#company-new{
+  width: 60%;
+  margin: auto;
+  box-shadow: 0px 0px 11px;
+  padding: 2%;
+  display: none;
+}
+#inner-company-new{
+  position: relative;
+  left: 10%;
+}
+
+#inputs-size{
+  width: 80%;
+  border-style: none;
+  border-bottom: 3px solid blue;
+}
+#inputs-size:focus{
+  border-style: none;
+  border-bottom: 3px solid blue;
+}
+
+#btn-company{
+  width: 80%;
+  box-shadow: 0px 0px 6px black;
+  border: none;
+}
+#btn-company:hover{
+  background-color: limegreen;
+  opacity: 0.7;
+  color: #fff;
+}
+
+
+.footer-container{
+  display: flex;
+  padding: 1%;
+  background-color:black;
+  color: #fff;
+}
+#first-element, #second-element{
+  flex-basis: 50%;
+}
+#first-element p{
+  text-align: center;
+}
+#second-element input, textarea{
+  width: 80%;
+  margin: auto;
+}
+.inputs-container{
+  position: relative;
+  left: 13%;
+}
+
+@media only screen and (max-width: 500px){
+  .footer-container{
+    flex-direction: column;
+    padding: 5%;
+  }
+}
+
+#header-pic{
+  width: 100%;
+  height: 100vh;
+}
