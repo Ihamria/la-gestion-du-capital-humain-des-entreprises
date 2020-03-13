@@ -122,9 +122,10 @@ $("#password-sign").keyup(function(){
 ///////////////////////////////////////////////////////
 
 function checkUsername(){
+    console.log('match');
     var name =$("#user-sign").val();
-    var pattern = /^[A-Z]{10}$/;
-    if(pattern.test(name)){
+    var pattern = /^[A-Z]{4,}$/;
+    if(name.match(pattern)){
         return true;
     }else{
         return false;
@@ -162,7 +163,6 @@ function validpasswordsign(){
 $(document).ready(function(){
 $(".addcompany").click(function(){
     $("#company-new").toggle();
-    $("#company-new").css("transition", "transform 0.7s");
   });
 });
 
