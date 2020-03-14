@@ -76,6 +76,9 @@ body {
 input:focus {
   outline:none;
 }
+textarea:focus {
+  outline:none;
+}
 #span-div{
   width: 60%;
   margin: auto;
