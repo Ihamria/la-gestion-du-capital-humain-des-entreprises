@@ -1,0 +1,26 @@
+{"entreprise":[{
+    "nom":"entreprise1",
+    "locals":"safi",
+    "description":"123",
+    "Département":
+    [{
+        "Nom":"d1",
+         "chef_département":"chef1",
+        "description":"345",
+         "liste_matricules":[{
+            "Matricule":"dacia",
+             "Nom":"elbouinany",
+             "Prenom":"mohamed",
+             "Age":"25 ans",
+             "salaire":"5000DH"
+         }]
+    }
+    ]
+},{
+    "nom":"entreprise2",
+    "locals":"safi",
+    "description":"123",
+    "Département":[{}]
+}
+]
+}
