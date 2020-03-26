@@ -1,0 +1,66 @@
+[
+    {
+        "ID": 1,
+        "name": "mehdi",
+        "lname": "karbal",
+        "role": "admin",
+        "email": "me.karbal@gmail.com",
+        "password": "123456"
+    },
+    {
+        "ID": 2,
+        "name": "Mohammed",
+        "lname": "karbal",
+        "role": "user",
+        "email": "me1.karbal@gmail.com",
+        "password": "123456"
+    },
+    {
+        "ID": 3,
+        "name": "jdfhgskjJFJG",
+        "lname": "ZFG",
+        "role": "Admin",
+        "email": "me.karbal@gmail.com",
+        "password": "123456"
+    },
+    {
+        "ID": 4,
+        "name": "jdfhgskjJFJG",
+        "lname": "ZFG",
+        "role": "Admin",
+        "email": "me.karbal@gmail.com",
+        "password": ""
+    },
+    {
+        "ID": 5,
+        "name": "yassine",
+        "lname": "chamache",
+        "role": "user",
+        "email": "me.karbal@gmail.com",
+        "password": "1122"
+    },
+    {
+        "ID": 6,
+        "name": "",
+        "lname": "",
+        "role": "Your Role",
+        "email": "",
+        "password": ""
+    },
+    {
+        "ID": 7,
+        "name": "",
+        "lname": "",
+        "role": "Your Role",
+        "email": "",
+        "password": ""
+    },
+    {
+        "ID": 8,
+        "name": "",
+        "lname": "",
+        "role": "Your Role",
+        "email": "",
+        "password": ""
+    }
+]
