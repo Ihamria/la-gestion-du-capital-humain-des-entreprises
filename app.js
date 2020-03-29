@@ -60,7 +60,7 @@ app.post('/add', (req, res) => {
 	const { title, country,local,desc,departements} = req.body;
 
 	data.push({ ID: data.length + 1, Title: title, Country: country,local:local,desc:desc,departements:departements });
-	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
+	fs.writeFileSync('./data/series.json', JSON.stringify(data, null));
 	res.redirect('/');
 });
 app.get('/display/:id', (req, res) => {
