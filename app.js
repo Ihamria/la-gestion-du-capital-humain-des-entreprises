@@ -60,7 +60,7 @@ app.post('/add', (req, res) => {
 	const { title, country,local,desc,departements} = req.body;
 
 	data.push({ ID: data.length + 1, Title: title, Country: country,local:local,desc:desc,departements:departements });
-	fs.writeFileSync('./data/series.json', JSON.stringify(data, null));
+	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
 	res.redirect('/');
 });
 app.get('/display/:id', (req, res) => {
@@ -107,7 +107,7 @@ app.post('/edit/:id', (req, res) => {
 	data[dataId].Country = country;
 	data[dataId].local = local;
 	data[dataId].desc = desc;
-	data[dataId].departements.name = departements;
+	data[dataId].departements= departements;
 
 	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
 	res.redirect('/');
@@ -125,7 +125,7 @@ app.get('/delete/:id', (req, res) => {
 
 	data = newData;
 	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
-	res.redirect('/');
+	res.redirect('/index');
 });
 
 app.listen(port, () => console.log(`youcode listening on port ${port}!`));
