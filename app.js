@@ -1,21 +1,27 @@
-const bodyParser = require('body-parser');
+
 const express = require('express');
 const fs = require('fs');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.static('picture'));
 const readJson = fs.readFileSync('./data/series.json');
-const readJson1=fs.readFileSync('./data/names.json')
+const readJson1=fs.readFileSync('./data/names.json');
+const readJson2=fs.readFileSync('./data/departement.json');
+const readJson3=fs.readFileSync('./data/salarie.json');
 let data = JSON.parse(readJson);
 let data1=JSON.parse(readJson1);
-
+let list=JSON.parse(readJson2);
+let list1=JSON.parse(readJson3);
 app.set('views', './views'); // specify the views directory
-app.set('view engine', 'ejs'); // register the template engine
+app.set('view engine', 'ejs'); 
+// register the template engine
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/views'));
-
+//app.use(express.static('pages'));
 app.get('/index', (req, res) => {
 	const { filter } = req.query;
 	let filterData = [];
@@ -73,10 +79,8 @@ app.get('/display/:id', (req, res) => {
 			dataId = i;
 		}console.log('helo weld nass')
 	}
-	
 	res.render('select', { data: data[dataId] });
 
-	
 });
 
 app.get('/edit/:id', (req, res) => {
@@ -110,12 +114,13 @@ app.post('/edit/:id', (req, res) => {
 	data[dataId].departements.name = departements;
 
 	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
+
 	res.redirect('/');
 });
 
 app.get('/delete/:id', (req, res) => {
 	const { id } = req.params;
-
+	console.log('req.params' + req.params);
 	const newData = [];
 	for (let i = 0; i < data.length; i++) {
 		if (Number(id) !== data[i].ID) {
@@ -127,5 +132,77 @@ app.get('/delete/:id', (req, res) => {
 	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
 	res.redirect('/');
 });
+//departement
+app.get('/departement/:Title/:ID',(req,resp)=>{
+	var {Title}= req.params;
+	var {ID}=req.params;
+	for(var j=0;j<data.length;j++){
+	 if(data[j].ID==ID && data[j].Title==Title){
+		resp.render('departement',{list,error:"Ajouter département",entreprise:Title,ID});
+	  }
+	}
+});
+/// ADD DEPARTEMENT
+app.post('/addDepartement',function(req,resp){
+	if(req.body.Nom==="" || req.body.chef_département==="" || req.body.description===""){
+		resp.redirect('/departement/'+ req.body.entreprise+"/" + req.body.ID);
+	}
+	else{
+	for(var i in data){
+		if(data[i].ID==req.body.ID){
+		list.push({
+				"ID":req.body.ID,
+				"Nom":req.body.Nom,
+				"chef_département":req.body.chef_département,
+			   "description":req.body.description,
+			   "idmatricule":list.length+1
+			});
+			fs.writeFile('data/departement.json',JSON.stringify(list,null,5),(err)=>{
+				console.log(err);
+			});
+			resp.redirect('/departement/'+ req.body.entreprise+"/" + req.body.ID);
+	}
+}
 
+}
+});
+
+//salarie
+app.get('/salarie/:Nom/:Matricule',(req,resp)=>{
+	var {Nom}= req.params;
+	var {Matricule}=req.params;
+
+	for(var j=0;j<list.length;j++){
+	 if(list[j].idmatricule==Matricule){
+		resp.render('salarie',{list1,text:"Ajouter Salarie",departement:Nom,Matricule});
+		console.log(list[j].idmatricule +"==" + Matricule);
+		console.log(list[j].Nom +"==" +Nom)  
+	}
+}
+});
+// ADD Salarie
+app.post('/addSalarie',function(req,resp){
+	console.log( req.body.departement+"/" + req.body.Matricule);
+	if(req.body.nom=="" || req.body.Prenom=="" || req.body.Age=="" || req.body.salarie==""){
+		resp.redirect('/salarie/'+ req.body.departement+"/" + req.body.Matricule);
+	}
+	else{
+	for(var i in list){
+		if(list[i].idmatricule==req.body.Matricule){
+		list1.push({
+				"Matricule":req.body.Matricule,
+				"id":list1.length +1,
+				"nom":req.body.nom,
+				"Prenom":req.body.Prenom,
+			   "Age":req.body.Age,
+			   "salaire":req.body.salaire
+			});
+			fs.writeFile('data/salarie.json',JSON.stringify(list1,null,5),(err)=>{
+				console.log(err);
+			});
+			resp.redirect('/salarie/'+ req.body.departement+"/" + req.body.Matricule);
+	}
+}
+}
+});
 app.listen(port, () => console.log(`youcode listening on port ${port}!`));

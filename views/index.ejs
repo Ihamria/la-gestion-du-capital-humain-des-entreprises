@@ -48,11 +48,10 @@
 						<td><%= d.Country %></td>
 						<td><%= d.local %></td>
 						<td><%= d.desc %></td>
-						
 						<td>
 							<a href="/edit/<%= d.ID %>" style="color: white">
-                <button type="button" class="btn btn-success">
-                  Edit
+				                <button type="button" class="btn btn-success">
+								Edit
                 </button>
               </a>
 							<a href="/delete/<%= d.ID %>" style="color: white" onclick="return confirm('are u sure ?')">
@@ -60,7 +59,10 @@
                   Delete
                 </button>
 			  </a>
-			  
+
+						</td>
+						<td>
+							<button  style="margin-bottom: 30px;" class="btn btn-info"><a href="/departement/<%= d.Title %>/<%=d.ID%>" style='color: white; text-decoration: none;' onclick="return confirm('Your welcome <%=d.Title%>?')">Show Departement</a></button>
 						</td>
 					</tr>
 				<% }) %>
