@@ -30,5 +30,13 @@
           "Prenom": "yassine",
           "Age": "20ans",
           "salaire": "39999"
+     },
+     {
+          "Matricule": "2",
+          "id": 5,
+          "nom": "salarie1",
+          "Prenom": "imad",
+          "Age": "25ans",
+          "salaire": "39999"
      }
 ]

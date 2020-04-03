@@ -111,7 +111,7 @@ app.post('/edit/:id', (req, res) => {
 	data[dataId].Country = country;
 	data[dataId].local = local;
 	data[dataId].desc = desc;
-	data[dataId].departements.name = departements;
+	data[dataId].departements= departements;
 
 	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
 
@@ -130,7 +130,7 @@ app.get('/delete/:id', (req, res) => {
 
 	data = newData;
 	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
-	res.redirect('/');
+	res.redirect('/index');
 });
 //departement
 app.get('/departement/:Title/:ID',(req,resp)=>{
