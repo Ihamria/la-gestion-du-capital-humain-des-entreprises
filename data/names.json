@@ -206,5 +206,13 @@
         "role": "Your Role",
         "email": "me.karbal@gmail.com",
         "password": "1234"
+    },
+    {
+        "ID": 27,
+        "name": "mehdi",
+        "lname": "karbal",
+        "role": "Admin",
+        "email": "me.karbal@gmail.com",
+        "password": "123456"
     }
 ]

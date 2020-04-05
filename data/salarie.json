@@ -62,5 +62,13 @@
           "Prenom": "az",
           "Age": "az",
           "salaire": "aza"
+     },
+     {
+          "Matricule": "8",
+          "id": 9,
+          "nom": "el bouinany",
+          "Prenom": "reda",
+          "Age": "23",
+          "salaire": "10000"
      }
 ]

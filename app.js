@@ -6,7 +6,11 @@ const app = express();
 const port = 3000;
 
 const readJson = fs.readFileSync('./data/entrepprises.json');
-const readJson1=fs.readFileSync('./data/names.json')
+const readJson1=fs.readFileSync('./data/names.json');
+const readJson2=fs.readFileSync('./data/departement.json');
+const readJson3=fs.readFileSync('./data/salarie.json');
+let list=JSON.parse(readJson2);
+let list1=JSON.parse(readJson3);
 let data = JSON.parse(readJson);
 let data1=JSON.parse(readJson1);
 
@@ -17,9 +21,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/views'));
 
 app.get('/index', (req, res) => {
-	
-	
-
 	res.render('index', { data });
 });
 
