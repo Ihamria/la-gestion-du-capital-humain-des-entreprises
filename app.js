@@ -1,48 +1,26 @@
-
+const bodyParser = require('body-parser');
 const express = require('express');
 const fs = require('fs');
-const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(express.static('picture'));
-const readJson = fs.readFileSync('./data/series.json');
-const readJson1=fs.readFileSync('./data/names.json');
-const readJson2=fs.readFileSync('./data/departement.json');
-const readJson3=fs.readFileSync('./data/salarie.json');
+
+const readJson = fs.readFileSync('./data/entrepprises.json');
+const readJson1=fs.readFileSync('./data/names.json')
 let data = JSON.parse(readJson);
 let data1=JSON.parse(readJson1);
-let list=JSON.parse(readJson2);
-let list1=JSON.parse(readJson3);
+
 app.set('views', './views'); // specify the views directory
-app.set('view engine', 'ejs'); 
-// register the template engine
-
+app.set('view engine', 'ejs'); // register the template engine
+app.use(express.static(__dirname + '/'));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/views'));
-//app.use(express.static('pages'));
+
 app.get('/index', (req, res) => {
-	const { filter } = req.query;
-	let filterData = [];
+	
+	
 
-	if (filter) {
-		for (let dt of data) {
-			if (
-				dt.Title.toLowerCase() === filter.toLowerCase() ||
-				dt.Country.toLowerCase() === filter.toLowerCase() ||
-				dt.ID === parseFloat(filter)
-			) {
-				filterData.push(dt);
-			}
-		}
-	}
-
-	if (!filter) {
-		filterData = data;
-	}
-
-	res.render('index', { data: filterData, filter });
+	res.render('index', { data });
 });
 
 // add Name
@@ -55,7 +33,7 @@ app.post('/addName', (req, res) => {
 
 	data1.push({ ID: data1.length + 1, name: name, lname: lname,role:role,email:email,password:password });
 	fs.writeFileSync('./data/names.json', JSON.stringify(data1, null, 4));
-	res.redirect('/index');
+	res.redirect('index');
 });
 // add company
 app.get('/add', (req, res) => {
@@ -63,25 +41,13 @@ app.get('/add', (req, res) => {
 });
 
 app.post('/add', (req, res) => {
-	const { title, country,local,desc,departements} = req.body;
+	const { title, country,local,desc} = req.body;
 
-	data.push({ ID: data.length + 1, Title: title, Country: country,local:local,desc:desc,departements:departements });
-	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
-	res.redirect('/');
+	data.push({ ID: data.length + 1, Title: title, Country: country,local:local,desc:desc });
+	fs.writeFileSync('./data/entrepprises.json', JSON.stringify(data, null, 4));
+	res.redirect('index');
 });
-app.get('/display/:id', (req, res) => {
-	const { id } = req.params;
-	let dataId;
-	console.log(id)
 
-	for (let i = 0; i < data.length; i++) {
-		if (Number(id) === data[i].ID) {
-			dataId = i;
-		}console.log('helo weld nass')
-	}
-	res.render('select', { data: data[dataId] });
-
-});
 
 app.get('/edit/:id', (req, res) => {
 	const { id } = req.params;
@@ -96,9 +62,10 @@ app.get('/edit/:id', (req, res) => {
 	res.render('edit', { data: data[dataId] });
 });
 
+
 app.post('/edit/:id', (req, res) => {
 	const { id } = req.params;
-	const { title, country,local,desc,departements } = req.body;
+	const { title, country,local,desc } = req.body;
 
 	let dataId;
 	for (let i = 0; i < data.length; i++) {
@@ -111,16 +78,14 @@ app.post('/edit/:id', (req, res) => {
 	data[dataId].Country = country;
 	data[dataId].local = local;
 	data[dataId].desc = desc;
-	data[dataId].departements= departements;
 
-	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
-
-	res.redirect('/');
+	fs.writeFileSync('./data/entrepprises.json', JSON.stringify(data, null, 4));
+	res.redirect('index ');
 });
 
 app.get('/delete/:id', (req, res) => {
 	const { id } = req.params;
-	console.log('req.params' + req.params);
+
 	const newData = [];
 	for (let i = 0; i < data.length; i++) {
 		if (Number(id) !== data[i].ID) {
@@ -129,9 +94,11 @@ app.get('/delete/:id', (req, res) => {
 	}
 
 	data = newData;
-	fs.writeFileSync('./data/series.json', JSON.stringify(data, null, 4));
-	res.redirect('/index');
+	fs.writeFileSync('./data/entrepprises.json', JSON.stringify(data, null, 4));
+	res.redirect('index');
 });
+
+
 //departement
 app.get('/departement/:Title/:ID',(req,resp)=>{
 	var {Title}= req.params;

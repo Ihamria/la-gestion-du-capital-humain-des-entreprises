@@ -40,5 +40,12 @@
           "chef_département": "eee",
           "description": "jeep",
           "idmatricule": 6
+     },
+     {
+          "ID": "1",
+          "Nom": "info",
+          "chef_département": "mehdi",
+          "description": "info",
+          "idmatricule": 7
      }
 ]
